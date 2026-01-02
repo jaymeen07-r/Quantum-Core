@@ -110,194 +110,195 @@ Unique Selling Points (USP) :
 
 Spam Call Detection Tool : 
 
-Problem: Spam calls and robocalls plague users, leading to privacy violations, fraud, and wasted time.
-> Real-world impact: Citizens waste hours dealing with spam, fall victim to financial scams, and experience anxiety from unknown callers.
+	Problem: Spam calls and robocalls plague users, leading to privacy violations, fraud, and wasted time.
+		> Real-world impact: Citizens waste hours dealing with spam, fall victim to financial scams, and experience anxiety from unknown callers.
 
-Solution: AI-powered spam call detector that identifies and blocks unwanted calls in real-time.
+	Solution: AI-powered spam call detector that identifies and blocks unwanted calls in real-time.
 
-Key Features :
- > Problem: False claims about vaccines causing autism or harmful side effects.
- > Real-world impact: Vaccine hesitancy rises, leading to outbreaks of preventable diseases like measles or polio.
+	Key Features :
+ 		> Problem: False claims about vaccines causing autism or harmful side effects.
+ 		> Real-world impact: Vaccine hesitancy rises, leading to outbreaks of preventable diseases like measles or polio.
 
-Feature 1: Real-Time Caller Identification :
- > Analyzes incoming call patterns and metadata.
- > Cross-references against known spam databases and complaint registries.
- > Instantly flags suspicious calls before user answers.
+	Feature 1: Real-Time Caller Identification :
+ 		> Analyzes incoming call patterns and metadata.
+ 		> Cross-references against known spam databases and complaint registries.
+ 		> Instantly flags suspicious calls before user answers.
 
-Feature 2: Audio Pattern Recognition :
- > Uses ML models to detect robocall signatures and automated dialing patterns.
- > Identifies common spam caller voice patterns and speech characteristics.
- > Analyzes call duration and frequency patterns.
+	Feature 2: Audio Pattern Recognition :
+ 		> Uses ML models to detect robocall signatures and automated dialing patterns.
+ 		> Identifies common spam caller voice patterns and speech characteristics.
+ 		> Analyzes call duration and frequency patterns.
 
-Feature 3: Scam Type Classification :
- > Categorizes spam calls: Telemarketing, Phishing, Financial Fraud, Tech Support, Prize Scams.
- > Provides specific alerts for each scam type with actionable warnings.
- > Updates classification in real-time as new spam patterns emerge.
+	Feature 3: Scam Type Classification :
+ 		> Categorizes spam calls: Telemarketing, Phishing, Financial Fraud, Tech Support, Prize Scams.
+ 		> Provides specific alerts for each scam type with actionable warnings.
+ 		> Updates classification in real-time as new spam patterns emerge.
 
-Feature 4: User Reporting & Feedback System :
- > Crowdsourced reporting to identify emerging spam campaigns.
- > Users can mark calls as spam/legitimate to improve model accuracy.
- > Collaborative database updated with real-time user reports.
+	Feature 4: User Reporting & Feedback System :
+ 		> Crowdsourced reporting to identify emerging spam campaigns.
+ 		> Users can mark calls as spam/legitimate to improve model accuracy.
+ 		> Collaborative database updated with real-time user reports.
 
-Feature 5: Smart Blocking & Whitelisting :
- > Intelligent whitelist for trusted contacts and businesses.
- > Customizable blocking rules based on user preferences.
- > Option to allow calls from unknown numbers with warnings instead of blocking.
+	Feature 5: Smart Blocking & Whitelisting :
+ 		> Intelligent whitelist for trusted contacts and businesses.
+ 		> Customizable blocking rules based on user preferences.
+ 		> Option to allow calls from unknown numbers with warnings instead of blocking.
 
-Technology Stack for Spam Call Detection :
+	Technology Stack for Spam Call Detection :
 
-1 Audio Processing :
- > FFmpeg for audio stream processing.
- > Librosa for audio feature extraction and analysis.
- > Speech recognition: Google Speech-to-Text or Azure Speech Services.
+		1 Audio Processing :
+ 			> FFmpeg for audio stream processing.
+ 			> Librosa for audio feature extraction and analysis.
+ 			> Speech recognition: Google Speech-to-Text or Azure Speech Services.
 
-2 ML Models :
- > Audio Classification: CNNs trained on spam call audio samples.
- > Time Series Analysis: LSTM networks for pattern detection in call sequences.
- > Anomaly Detection: Isolation Forest for identifying unusual calling behaviors.
- > Transfer Learning: Pre-trained models from audio classification tasks (ESC-50, UrbanSound).
+		2 ML Models :
+ 			> Audio Classification: CNNs trained on spam call audio samples.
+ 			> Time Series Analysis: LSTM networks for pattern detection in call sequences.
+ 			> Anomaly Detection: Isolation Forest for identifying unusual calling behaviors.
+ 			> Transfer Learning: Pre-trained models from audio classification tasks (ESC-50, UrbanSound).
 
-3 Database & Storage :
- > PostgreSQL: User data, call logs, whitelist/blacklist.
- > Redis: Real-time cache for known spam numbers for instant lookups.
- > Time-series DB (InfluxDB): Tracking call patterns and trends over time.
+		3 Database & Storage :
+ 			> PostgreSQL: User data, call logs, whitelist/blacklist.
+ 			> Redis: Real-time cache for known spam numbers for instant lookups.
+ 			> Time-series DB (InfluxDB): Tracking call patterns and trends over time.
 
-4 Real-Time Processing :
- > Kafka: Streaming call metadata from telecom providers.
- > Apache Spark: Real-time processing of millions of calls.
- > WebSocket: Live updates to user app during incoming calls.
+		4 Real-Time Processing :
+ 			> Kafka: Streaming call metadata from telecom providers.
+ 			> Apache Spark: Real-time processing of millions of calls.
+ 			> WebSocket: Live updates to user app during incoming calls.
 
-5 Deployment :
- > Containerized with Docker.
- > Cloud deployment on AWS Lambda or Google Cloud Functions for scalability.
- > Integration with telecom carriers for direct call interception.
+		5 Deployment :
+ 			> Containerized with Docker.
+ 			> Cloud deployment on AWS Lambda or Google Cloud Functions for scalability.
+ 			> Integration with telecom carriers for direct call interception.
 
 How the Spam Call Detector Works :
 
-1 Call Arrives :
- > User's phone receives incoming call.
- > Call metadata (number, duration, frequency) is captured.
+	1 Call Arrives :
+ 		> User's phone receives incoming call.
+ 		> Call metadata (number, duration, frequency) is captured.
 
-2 System Analysis :
- > Query Redis cache: Is this number known to be spam?
- > If not in cache, check PostgreSQL spam database (previous user reports).
-> Extract audio features if call is answered partially or connected to voicemail.
-> Apply ML models to assess spam probability.
+	2 System Analysis :
+ 		> Query Redis cache: Is this number known to be spam?
+ 		> If not in cache, check PostgreSQL spam database (previous user reports).
+		> Extract audio features if call is answered partially or connected to voicemail.
+		> Apply ML models to assess spam probability.
 
-3 Decision Engine :
- > Score calculation: Combine metadata analysis + audio analysis + database lookup.
- > Generate confidence score (0-100%) for spam likelihood.
+	3 Decision Engine :
+ 		> Score calculation: Combine metadata analysis + audio analysis + database lookup.
+ 		> Generate confidence score (0-100%) for spam likelihood.
 
-4 User Action :
- > Green: Safe (known business, contact, verified source) - Allow call.
- > Yellow: Suspicious (unknown caller, potential fraud risk) - Warn user, provide block option.
- > Red: Spam (high confidence spam) - Auto-block or show warning before connecting.
+	4 User Action :
+ 		> Green: Safe (known business, contact, verified source) - Allow call.
+ 		> Yellow: Suspicious (unknown caller, potential fraud risk) - Warn user, provide block option.
+ 		> Red: Spam (high confidence spam) - Auto-block or show warning before connecting.
 
-5 Feedback Loop :
- > User marks call as spam/legitimate.
- > Data is anonymized and added to the collaborative database.
- > ML models are retrained with new data to improve accuracy.
+	5 Feedback Loop :
+ 		> User marks call as spam/legitimate.
+ 		> Data is anonymized and added to the collaborative database.
+ 		> ML models are retrained with new data to improve accuracy.
 
-6 Reporting :
- > Dashboard shows call statistics: spam attempts blocked, most common scams detected.
- > Users can view detailed logs of all spam calls and their classifications.
+	6 Reporting :
+ 		> Dashboard shows call statistics: spam attempts blocked, most common scams detected.
+ 		> Users can view detailed logs of all spam calls and their classifications.
 
 Integration with Quantum-Core :
 
-The Spam Call Detection Tool complements the main misinformation detection platform:
+	The Spam Call Detection Tool complements the main misinformation detection platform:
 
- > Shared Infrastructure: Both use similar ML pipeline, databases, and cloud infrastructure.
- > Cross-Verification: If a spam caller makes claims (e.g., "You won a prize"), Quantum-Core can verify those claims in real-time.
- > Unified Dashboard: Users get alerts for misinformation AND spam calls from one platform.
- > User Trust: Protecting against fraud (spam calls) builds user confidence in the misinformation detection capabilities.
+ 		> Shared Infrastructure: Both use similar ML pipeline, databases, and cloud infrastructure.
+ 		> Cross-Verification: If a spam caller makes claims (e.g., "You won a prize"), Quantum-Core can verify those claims in real-time.
+ 		> Unified Dashboard: Users get alerts for misinformation AND spam calls from one platform.
+ 		> User Trust: Protecting against fraud (spam calls) builds user confidence in the misinformation detection capabilities.
 
 Implementation Timeline :
 
-Phase 1 (Weeks 1-4): MVP Development
- > Build basic call metadata collection and spam database lookup.
- > Develop simple audio feature extraction.
- > Create user whitelist/blacklist functionality.
- > Deploy on single cloud region.
+	Phase 1 (Weeks 1-4): MVP Development
+ 		> Build basic call metadata collection and spam database lookup.
+ 		> Develop simple audio feature extraction.
+ 		> Create user whitelist/blacklist functionality.
+ 		> Deploy on single cloud region.
 
-Phase 2 (Weeks 5-8): ML Model Integration
- > Train and integrate audio classification models.
- > Implement time-series pattern detection.
- > Add crowdsourced reporting system.
- > Expand to multiple telecom providers.
+	Phase 2 (Weeks 5-8): ML Model Integration
+ 		> Train and integrate audio classification models.
+ 		> Implement time-series pattern detection.
+ 		> Add crowdsourced reporting system.
+ 		> Expand to multiple telecom providers.
 
-Phase 3 (Weeks 9-12): Scale & Optimize
- > Implement real-time streaming with Kafka and Spark.
- > Deploy across multiple cloud regions for redundancy.
- > Achieve 99.9% uptime SLA.
- > Launch public beta.
+	Phase 3 (Weeks 9-12): Scale & Optimize
+ 		> Implement real-time streaming with Kafka and Spark.
+ 		> Deploy across multiple cloud regions for redundancy.
+ 		> Achieve 99.9% uptime SLA.
+ 		> Launch public beta.
 
 Performance Metrics :
 
- > Spam Detection Accuracy: 92%+ (measured on labeled spam call dataset).
- > False Positive Rate: <3% (minimize blocking of legitimate calls).
- > Detection Latency: <500ms (decision made before call connects).
- > Throughput: Process 10,000+ calls per second at peak load.
- > Uptime: 99.9% availability.
- > User Adoption: Target 1M+ users in first year.
+ 	> Spam Detection Accuracy: 92%+ (measured on labeled spam call dataset).
+ 	> False Positive Rate: <3% (minimize blocking of legitimate calls).
+ 	> Detection Latency: <500ms (decision made before call connects).
+ 	> Throughput: Process 10,000+ calls per second at peak load.
+ 	> Uptime: 99.9% availability.
+ 	> User Adoption: Target 1M+ users in first year.
 
 Monetization & Business Model :
 
-1 Freemium Model :
- > Free Tier: Basic spam detection, limited call logs, generic spam alerts.
- > Premium Tier ($4.99/month): Advanced caller ID, detailed analytics, custom blocking rules, priority support.
+	1 Freemium Model :
+ 		> Free Tier: Basic spam detection, limited call logs, generic spam alerts.
+ 		> Premium Tier ($4.99/month): Advanced caller ID, detailed analytics, custom blocking rules, priority support.
 
-2 B2B Services :
- > Telecom Provider Partnerships: License technology to carriers (at-scale spam detection).
- > Enterprise Solutions: Companies pay for spam protection for their phone systems.
- > API Access: Developers integrate spam detection into their apps (subscription-based).
+	2 B2B Services :
+ 		> Telecom Provider Partnerships: License technology to carriers (at-scale spam detection).
+ 		> Enterprise Solutions: Companies pay for spam protection for their phone systems.
+ 		> API Access: Developers integrate spam detection into their apps (subscription-based).
 
-3 Data & Analytics :
- > Anonymized spam trend reports sold to telecom providers and law enforcement.
- > Market intelligence on emerging scam types.
+	3 Data & Analytics :
+ 		> Anonymized spam trend reports sold to telecom providers and law enforcement.
+ 		> Market intelligence on emerging scam types.
 
 Future Enhancements :
 
- > Multi-language Support: Detect spam calls in 50+ languages.
- > AI Assistant: Voice bot that can detect and engage with scam callers to gather intelligence.
- > Deepfake Voice Detection: Identify spoofed caller IDs and synthetic voices.
- > Integration with Smart Home: Alert users across all connected devices.
- > Biometric Verification: Use voice recognition to verify trusted callers.
+ 	> Multi-language Support: Detect spam calls in 50+ languages.
+ 	> AI Assistant: Voice bot that can detect and engage with scam callers to gather intelligence.
+ 	> Deepfake Voice Detection: Identify spoofed caller IDs and synthetic voices.
+ 	> Integration with Smart Home: Alert users across all connected devices.
+ 	> Biometric Verification: Use voice recognition to verify trusted callers.
 
 Security & Privacy Considerations :
 
- > End-to-End Encryption: All call metadata encrypted in transit and at rest.
- > User Data Anonymization: Remove personally identifiable information before ML training.
- > Regulatory Compliance: GDPR, CCPA, HIPAA compliance for sensitive call content.
- > Transparent Logging: Users can see exactly what data is collected and how it's used.
- > User Control: Options to opt-in/opt-out of data sharing and model training.
+ 	> End-to-End Encryption: All call metadata encrypted in transit and at rest.
+ 	> User Data Anonymization: Remove personally identifiable information before ML training.
+ 	> Regulatory Compliance: GDPR, CCPA, HIPAA compliance for sensitive call content.
+ 	> Transparent Logging: Users can see exactly what data is collected and how it's used.
+ 	> User Control: Options to opt-in/opt-out of data sharing and model training.
 
 Conclusion :
 
 Quantum-Core's dual focus on misinformation detection and spam call prevention creates a comprehensive solution for protecting users from both digital deception and fraud. By leveraging advanced AI/ML, real-time data processing, and community intelligence, the platform can significantly improve user safety, trust, and digital literacy in an increasingly complex information landscape.
 
-Both modules employ cutting-edge technology, scalable architecture, and human-centric design to deliver measurable value to users, organizations, and society.
+	Both modules employ cutting-edge technology, scalable architecture, and human-centric design to deliver measurable value to users, organizations, and society.
 
 Key Differentiators :
 
- ✓ Integrated platform: Detect both misinformation AND spam in unified interface.
- ✓ Real-time processing: Decisions made in <500ms for urgent situations.
- ✓ Community-driven: Crowdsourced data improves model accuracy over time.
- ✓ Transparent design: Clear reasoning for every flag or block decision.
- ✓ Enterprise-ready: Scalable architecture for millions of concurrent users.
- ✓ Privacy-first: User data protected with encryption and anonymization.
- ✓ Customizable: Users and organizations configure rules to fit their needs.
+ 	✓ Integrated platform: Detect both misinformation AND spam in unified interface.
+ 	✓ Real-time processing: Decisions made in <500ms for urgent situations.
+ 	✓ Community-driven: Crowdsourced data improves model accuracy over time.
+ 	✓ Transparent design: Clear reasoning for every flag or block decision.
+ 	✓ Enterprise-ready: Scalable architecture for millions of concurrent users.
+ 	✓ Privacy-first: User data protected with encryption and anonymization.
+ 	✓ Customizable: Users and organizations configure rules to fit their needs.
 
 Project Status & Next Steps :
 
- > Current Phase: Design & Architecture Documentation
- > Next Priority: Prototype development for core NLP and audio classification modules.
- > Team Needs: ML Engineers, Full-Stack Developers, Security Specialists, DevOps Engineers.
- > Timeline: MVP launch target Q1 2026, public beta Q2 2026.
- > Investment Potential: Seeking seed funding for team expansion and infrastructure.
+ 	> Current Phase: Design & Architecture Documentation
+ 	> Next Priority: Prototype development for core NLP and audio classification modules.
+ 	> Team Needs: ML Engineers, Full-Stack Developers, Security Specialists, DevOps Engineers.
+ 	> Timeline: MVP launch target Q1 2026, public beta Q2 2026.
+ 	> Investment Potential: Seeking seed funding for team expansion and infrastructure.
 
 --- END OF DOCUMENTATION ---
 
 Author: Jaymeen Vaghela
+
 
 
 
