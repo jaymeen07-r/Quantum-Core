@@ -261,7 +261,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 ### Project Team
 
 - **Team Leader** - JAYMEEN N. VAGHELA - Lead Architect & AI/ML Specialist - [Get in Touch](https://github.com/jaymeen07-r)  
-- **Team Leader** - RAJ A. SANGANI - Lead Research Analyst - [Get in Touch](https://github.com/rajsangani2000-byte)  
+- **Member** - RAJ D. SANGANI - Lead Research Analyst - [Get in Touch](https://github.com/rajsangani2000-byte)  
 - **Guide** - PROF. AMIT P. MODI 
 - **Hackathon:** Gen AI Exchange Hackathon 2025 (Google)  
 
